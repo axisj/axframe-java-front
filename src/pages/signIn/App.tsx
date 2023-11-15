@@ -37,22 +37,25 @@ function App({}: Props) {
   const ref1 = React.useRef(null);
   const ref2 = React.useRef(null);
 
-  const steps: TourProps["steps"] = [
-    {
-      title: "Hello Stranger! This is a demo page.",
-      description: "Please enter any value for your ID and password.",
-      target: () => ref1.current,
-    },
-    {
-      title: "Sign In",
-      description: "Click Sign In Button",
-      target: () => ref2.current,
-      onFinish: () => {
-        localStorage.setItem("isRegularUser", "true");
-        setOpen(false);
+  const steps: TourProps["steps"] = React.useMemo(
+    () => [
+      {
+        title: "Hello Stranger! This is a demo page.",
+        description: "Please enter any value for your ID and password.",
+        target: () => ref1.current,
       },
-    },
-  ];
+      {
+        title: "Sign In",
+        description: "Click Sign In Button",
+        target: () => ref2.current,
+        onFinish: () => {
+          localStorage.setItem("isRegularUser", "true");
+          setOpen(false);
+        },
+      },
+    ],
+    [],
+  );
 
   const [form] = Form.useForm<SignInFormItem>();
 
@@ -274,6 +277,7 @@ const SignInLogo = styled.div`
   height: 96px;
   margin-top: 16px;
   ${SMixinFlexColumn("center", "center")};
+  color: ${(p) => p.theme.text_display_color};
 `;
 
 const SignInBoxBody = styled.div`
