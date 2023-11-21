@@ -5,6 +5,8 @@ import RequireAuth from "./RequireAuth";
 import RestrictAuth from "./RestrictAuth";
 import { ROUTES, ROUTES_LIST } from "./Routes";
 import { useAppMenu } from "./useAppMenu";
+import { EXAMPLE_ROUTERS } from "../@core/router/exampleRouter.ts";
+import { StoreSpinner } from "../@core/components";
 
 const FrameDefault = React.lazy(() => import("pageFrame/FrameDefault"));
 const FrameProgram = React.lazy(() => import("pageFrame/FrameProgram"));
@@ -45,43 +47,41 @@ function PageRoute() {
   }, [MENUS_LIST, location.pathname, setActiveTabByPath, setSelectedMenuUuid]);
 
   return (
-    <Routes>
-      <Route
-        element={
-          <RequireAuth>
-            <React.Suspense fallback={<></>}>
+    <React.Suspense fallback={<StoreSpinner spinning />}>
+      <Routes>
+        <Route
+          element={
+            <RequireAuth>
               <FrameProgram sideMenuOpened={sideMenuOpened} />
-            </React.Suspense>
-          </RequireAuth>
-        }
-      >
-        <Route path={ROUTES.EXAMPLES.children.LIST_DETAIL.children.REGISTRATION.path} element={<ExampleForm />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_DETAIL.children.LIST.path} element={<ExampleList />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_DETAIL.children.DETAIL.path} element={<ExampleDetail />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_AND_MODAL.path} element={<ExampleListAndModal />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_AND_DRAWER.path} element={<ExampleListAndDrawer />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_WITH_LIST.path} element={<ExampleListWithList />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_WITH_FORM.path} element={<ExampleListWithForm />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_WITH_FORM_LIST.path} element={<ExampleListWithFormList />} />
-        <Route path={ROUTES.EXAMPLES.children.LIST_WITH_FORM_ROW.path} element={<ExampleListWithFormRow />} />
-        <Route path={ROUTES.EXAMPLES.children.THREE_LIST.path} element={<ExampleThreeList />} />
-        <Route path={ROUTES.EXAMPLES.children.STATS.path} element={<ExampleStats />} />
+            </RequireAuth>
+          }
+        >
+          <Route path={EXAMPLE_ROUTERS.LIST_DETAIL.children.REGISTRATION.path} element={<ExampleForm />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_DETAIL.children.LIST.path} element={<ExampleList />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_DETAIL.children.DETAIL.path} element={<ExampleDetail />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_AND_MODAL.path} element={<ExampleListAndModal />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_AND_DRAWER.path} element={<ExampleListAndDrawer />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_WITH_LIST.path} element={<ExampleListWithList />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_WITH_FORM.path} element={<ExampleListWithForm />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_WITH_FORM_LIST.path} element={<ExampleListWithFormList />} />
+          <Route path={EXAMPLE_ROUTERS.LIST_WITH_FORM_ROW.path} element={<ExampleListWithFormRow />} />
+          <Route path={EXAMPLE_ROUTERS.THREE_LIST.path} element={<ExampleThreeList />} />
+          <Route path={EXAMPLE_ROUTERS.STATS.path} element={<ExampleStats />} />
 
-        <Route path={ROUTES.HOME.path} element={<Home />} />
-      </Route>
-      <Route
-        element={
-          <RestrictAuth>
-            <React.Suspense fallback={<></>}>
+          <Route path={ROUTES.HOME.path} element={<Home />} />
+        </Route>
+        <Route
+          element={
+            <RestrictAuth>
               <FrameDefault />
-            </React.Suspense>
-          </RestrictAuth>
-        }
-      >
-        <Route path={ROUTES.SIGN_IN.path} element={<SignIn />} />
-      </Route>
-      <Route path={"*"} element={<Error404 />} />
-    </Routes>
+            </RestrictAuth>
+          }
+        >
+          <Route path={ROUTES.SIGN_IN.path} element={<SignIn />} />
+        </Route>
+        <Route path={"*"} element={<Error404 />} />
+      </Routes>
+    </React.Suspense>
   );
 }
 

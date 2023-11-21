@@ -1,6 +1,7 @@
 import React from "react";
 import { getFlattedRoutes } from "@core/utils/store/getFlattedRoutes";
 import { PROGRAM_TYPES } from "./@types";
+import { example_router, getRoutes } from "../@core/router/exampleRouter.ts";
 
 export interface RawRoute {
   key?: string;
@@ -22,85 +23,12 @@ const routes = {
     path: "",
     hideTab: true,
   },
-
-  EXAMPLES: {
-    path: "examples",
-    children: {
-      LIST_DETAIL: {
-        path: "listAndDetail",
-        children: {
-          REGISTRATION: {
-            program_type: PROGRAM_TYPES.EXAMPLE_FORM,
-            path: "registration",
-          },
-          LIST: {
-            program_type: PROGRAM_TYPES.EXAMPLE_LIST,
-            path: "list",
-          },
-          DETAIL: {
-            program_type: PROGRAM_TYPES.EXAMPLE_DETAIL,
-            path: "detail/:id",
-          },
-        },
-      },
-
-      LIST_AND_MODAL: {
-        program_type: PROGRAM_TYPES.EXAMPLE_LIST_AND_MODAL,
-        path: "listAndModal",
-      },
-
-      LIST_AND_DRAWER: {
-        program_type: PROGRAM_TYPES.EXAMPLE_LIST_AND_DRAWER,
-        path: "listAndDrawer",
-      },
-
-      LIST_WITH_LIST: {
-        program_type: PROGRAM_TYPES.EXAMPLE_LIST_WITH_LIST,
-        path: "listWithList",
-      },
-
-      LIST_WITH_FORM: {
-        program_type: PROGRAM_TYPES.EXAMPLE_LIST_WITH_FORM,
-        path: "listWithForm",
-      },
-
-      LIST_WITH_FORM_LIST: {
-        program_type: PROGRAM_TYPES.EXAMPLE_LIST_WITH_FORM_LIST,
-        path: "listWithFormList",
-      },
-
-      LIST_WITH_FORM_ROW: {
-        program_type: PROGRAM_TYPES.EXAMPLE_LIST_WITH_FORM_ROW,
-        path: "listWithFormRow",
-      },
-
-      THREE_LIST: {
-        program_type: PROGRAM_TYPES.EXAMPLE_THREE_LIST,
-        path: "threeList",
-      },
-
-      STATS: {
-        program_type: PROGRAM_TYPES.EXAMPLE_STATS,
-        path: "stats",
-      },
-    },
-  },
 };
 
-function getRoutes(routes: RawRoutes, parentPath: string): RawRoutes {
-  const routeList: RawRoute[] = Object.entries(routes).map(([key, { path, program_type, icon, hideTab, children }]) => {
-    return {
-      key,
-      path: parentPath + path,
-      program_type,
-      icon,
-      hideTab,
-      children: children ? getRoutes(children ?? {}, parentPath + path + "/") : undefined,
-    };
-  });
-
-  return routeList.reduce((acc, cur) => ({ ...acc, [cur.key ?? ""]: cur }), {});
-}
+routes["EXAMPLES"] = {
+  path: "examples",
+  children: example_router,
+};
 
 export const ROUTES = getRoutes(routes, "/") as typeof routes;
 export const ROUTES_LIST: RawRoute[] = getFlattedRoutes(ROUTES);
