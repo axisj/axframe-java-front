@@ -39,7 +39,7 @@ function PageRoute() {
     if (!route) {
       return;
     }
-    const currentMenu = MENUS_LIST.find((m) => m.progCd === route.program_type);
+    const currentMenu = MENUS_LIST.find((m) => m.progCd && m.progCd === route.program_type);
 
     setSelectedMenuUuid(currentMenu?.keyPath?.join("_") ?? "");
 
