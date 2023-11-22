@@ -50,7 +50,16 @@ const NavGroupContainer = styled.div<StyleProps>`
   ${SMixinFlexColumn("stretch", "stretch")};
   background: ${(p) => p.theme.header_background};
   border-radius: 8px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+  ${({ theme }) => {
+    if (theme.themeType === "DARK") {
+      return css`
+        border: 1px solid ${theme.border_color_base};
+      `;
+    }
+    return css`
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+    `;
+  }}
 `;
 const NavContent = styled.div<StyleProps>`
   flex: 1;

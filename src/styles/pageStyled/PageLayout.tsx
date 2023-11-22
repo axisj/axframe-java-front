@@ -245,7 +245,6 @@ const PageSearchBar = styled.div`
       ${(p) => alpha(p.theme.border_color_base, 100)} calc(100% - 32px),
       ${(p) => alpha(p.theme.border_color_base, 0)} 100%
     );
-    box-shadow: ${(p) => p.theme.box_shadow_resizer};
   }
 `;
 

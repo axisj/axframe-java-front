@@ -4,7 +4,7 @@ const DARK: typeof LIGHT = {
   BLUE_5: "#F0F6FA",
   BLUE_10: "#C8DEED",
   BLUE_30: "#7DB2D5",
-  BLUE_50: "#6681e3",
+  BLUE_50: "#e03939",
   BLUE_60: "#405580",
   BLUE_70: "#2c77f8",
   BLUE_90: "#193E58",
@@ -17,10 +17,10 @@ const DARK: typeof LIGHT = {
   INK_40: "#383B42",
   INK_50: "#2B2E35",
   INK_60: "#444954",
-  INK_70: "#3c414b",
-  INK_80: "#333841",
-  INK_90: "#282C34",
-  INK_100: "#14171a",
+  INK_70: "#3B4048", // 보더
+  INK_80: "#282C34", // 바디
+  INK_90: "#21252B",
+  INK_100: "#141518",
 
   GREEN_10: "#CAEED0",
   GREEN_50: "#4FB75F",
