@@ -14,11 +14,11 @@ const lightAntdColors = {
   primary_color_outline: alpha(LIGHT.GREEN_50, 0.2),
   text_color: LIGHT.INK_70,
   error_color: LIGHT.RED_50,
-  success_color: LIGHT.BLUE_50,
+  success_color: LIGHT.GREEN_50,
   info_color: LIGHT.BLUE_50,
   highlight_color: LIGHT.RED_50,
-  disabled_color: alpha(LIGHT.INK_70, 0.5),
-  disabled_bg: LIGHT.INK_30,
+  disabled_color: alpha(LIGHT.INK_70, 0.6),
+  disabled_bg: LIGHT.INK_10,
   warning_color: LIGHT.YELLOW_50,
   white_color: LIGHT.INK_5,
   black_color: "#000",
@@ -87,7 +87,7 @@ const lightColors = {
   axfdg_scroll_thumb_radius: "6px",
   axfdg_scroll_thumb_bg: lightAntdColors.scroll_thumb_color,
   axfdg_scroll_thumb_hover_bg: LIGHT.INK_70,
-  axfdg_loading_bg: "transparent",
+  axfdg_loading_bg: alpha(LIGHT.INK_20, 0.3),
   axfdg_loading_color: alpha(LIGHT.INK_70, 0.1),
   axfdg_loading_second_color: LIGHT.INK_70,
 
@@ -233,6 +233,7 @@ const lightTokens: Partial<AliasToken> = {
   colorBorder: lightAntdColors.border_color_base,
   colorBgContainerDisabled: lightAntdColors.disabled_bg,
   colorBgElevated: lightAntdColors.component_background,
+  colorTextDisabled: lightAntdColors.disabled_color,
 };
 const darkTokens: Partial<AliasToken> = {
   controlOutlineWidth: 0,
@@ -243,6 +244,7 @@ const darkTokens: Partial<AliasToken> = {
   colorBgContainerDisabled: darkAntdColors.disabled_bg,
   colorBgElevated: darkAntdColors.component_background,
   controlItemBgActive: darkAntdColors.item_active_bg,
+  colorTextDisabled: darkAntdColors.disabled_color,
 };
 
 const lightComponents = {
