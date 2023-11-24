@@ -2,7 +2,7 @@ import { useAppStore, useUserStore } from "stores";
 import { getFlattedAppMenus } from "@core/utils/store";
 import React from "react";
 import { AppMenu, AppMenuGroup } from "services";
-import { PROGRAM_TYPES } from "./@types";
+import { PROGRAM_TYPES } from "./@programTypes";
 
 export function useAppMenu() {
   const appMenuGroups = useAppStore((s) => s.appMenuGroups);
