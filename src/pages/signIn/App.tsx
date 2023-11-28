@@ -14,6 +14,8 @@ import { IconAXFrameOpened } from "components/icons";
 import { IconText } from "@core/components/common";
 import React from "react";
 import { errorHandling } from "../../utils";
+import { mediaMin } from "../../styles/mediaQueries.ts";
+import { alpha } from "../../styles/palette/colorUtil.ts";
 
 interface Props {
   onSignIn?: (values: SignInFormItem) => Promise<void>;
@@ -217,6 +219,8 @@ const SignInContainer = styled.div`
   overflow: auto;
   background: url("/signin-background.jpg") no-repeat center center;
   background-size: cover;
+  padding: 16px;
+
   .reset-password {
     float: right;
   }
@@ -250,21 +254,38 @@ const SignInContainer = styled.div`
 `;
 
 const SignInBox = styled.div`
-  width: 800px;
-  height: 500px;
   background: ${(p) => p.theme.body_background};
   border-radius: 16px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(8px);
   ${SMixinFlexRow("stretch", "stretch")};
   overflow: hidden;
+
+  width: 100%;
+
+  ${mediaMin.sm} {
+    width: 800px;
+    height: 500px;
+  }
 `;
 
 const SignInVisual = styled.div`
-  width: 400px;
-  height: 500px;
-  background: url("/signin-visual.jpg") no-repeat center center;
-  background-size: cover;
+  display: none;
+
+  ${mediaMin.sm} {
+    width: 400px;
+    height: 500px;
+    background: url("/signin-visual.jpg") no-repeat center center;
+    background-size: cover;
+
+    padding: 10px;
+    ${SMixinFlexRow("flex-end", "flex-end")};
+    gap: 10px;
+    a {
+      color: ${(p) => alpha(p.theme.white_color, 0.8)};
+      white-space: nowrap;
+    }
+  }
 `;
 
 const SignInFormBox = styled.div`
@@ -273,15 +294,20 @@ const SignInFormBox = styled.div`
 `;
 
 const SignInLogo = styled.div`
-  width: 400px;
-  height: 96px;
-  margin-top: 16px;
+  width: 100%;
+  margin-top: 20px;
   ${SMixinFlexColumn("center", "center")};
   color: ${(p) => p.theme.text_display_color};
+
+  ${mediaMin.sm} {
+    width: 400px;
+    height: 96px;
+    margin-top: 16px;
+  }
 `;
 
 const SignInBoxBody = styled.div`
-  padding: 20px 32px;
+  padding: 16px 24px;
   flex: 1;
 
   .ant-form-vertical {
@@ -294,6 +320,10 @@ const SignInBoxBody = styled.div`
   }
   .ant-form-item {
     margin-bottom: 18px;
+  }
+
+  ${mediaMin.sm} {
+    padding: 20px 32px;
   }
 `;
 const SignInBoxFooter = styled.div`
