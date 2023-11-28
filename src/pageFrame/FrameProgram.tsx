@@ -10,6 +10,7 @@ import AppMenuBarTools from "components/nav/AppMenuBarTools";
 import AppMenuBar from "components/nav/AppMenuBar";
 import { usePageTabStore } from "@core/stores/usePageTabStore";
 import { PageFooter } from "../components/nav/PageFooter";
+import { useAppStore } from "../stores";
 
 interface StyleProps {
   sideMenuOpened: boolean;
@@ -19,6 +20,7 @@ interface Props extends StyleProps {}
 
 function FrameProgram({ sideMenuOpened }: Props) {
   const pageTabLoaded = usePageTabStore((s) => s.loaded);
+  const fullScreen = useAppStore((s) => s.fullScreen);
 
   return (
     <PageFrameContainer>
@@ -26,15 +28,20 @@ function FrameProgram({ sideMenuOpened }: Props) {
         <AppMenuBar />
         <AppMenuBarTools />
       </PageFrameHeaderToolBar>
-      <PageFrameHeader>
-        <Logo />
-        {pageTabLoaded && <TabGroup />}
-      </PageFrameHeader>
+
+      {!fullScreen && (
+        <PageFrameHeader>
+          <Logo />
+          {pageTabLoaded && <TabGroup />}
+        </PageFrameHeader>
+      )}
 
       <PageFrameContent>
-        <PageFrameNav sideMenuOpened={sideMenuOpened}>
-          <NavGroup />
-        </PageFrameNav>
+        {!fullScreen && (
+          <PageFrameNav sideMenuOpened={sideMenuOpened}>
+            <NavGroup />
+          </PageFrameNav>
+        )}
         <Content>
           <React.Suspense fallback={<></>}>
             <Outlet />
@@ -42,9 +49,11 @@ function FrameProgram({ sideMenuOpened }: Props) {
         </Content>
       </PageFrameContent>
 
-      <PageFrameFooter>
-        <PageFooter />
-      </PageFrameFooter>
+      {!fullScreen && (
+        <PageFrameFooter>
+          <PageFooter />
+        </PageFrameFooter>
+      )}
     </PageFrameContainer>
   );
 }

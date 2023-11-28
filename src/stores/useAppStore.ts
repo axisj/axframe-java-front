@@ -13,6 +13,7 @@ export interface AppModel {
   height: number;
   appMenuGroups: AppMenuGroup[];
   appMenuGroupSpinning: boolean;
+  fullScreen: boolean;
 }
 
 export interface AppActions {
@@ -22,6 +23,7 @@ export interface AppActions {
   setSideMenuOpened: (sideMenuOpened: boolean) => void;
   setWidthHeight: (width: number, height: number) => void;
   callAppMenu: () => Promise<void>;
+  setFullScreen: (fullScreen: boolean) => void;
 }
 
 export interface AppStore extends AppModel, AppActions {}
@@ -35,6 +37,7 @@ export const appInitialState: AppModel = {
   height: 0,
   appMenuGroups: [],
   appMenuGroupSpinning: false,
+  fullScreen: false,
 };
 
 const getAppStoreActions: StoreActions<AppModel & AppActions, AppActions> = (set, get) => ({
@@ -52,6 +55,7 @@ const getAppStoreActions: StoreActions<AppModel & AppActions, AppActions> = (set
       set({ appMenuGroupSpinning: false });
     }
   },
+  setFullScreen: (fullScreen: boolean) => set({ fullScreen }),
 });
 
 export const useAppStore = buildStore<AppStore>("app", 1, (set, get) => ({

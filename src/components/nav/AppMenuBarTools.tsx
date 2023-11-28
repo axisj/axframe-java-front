@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { useUserStore } from "stores";
+import { useAppStore, useUserStore } from "stores";
 import { SMixinFlexRow } from "@core/styles/emotion";
 import { useI18n } from "@core/hooks";
 import { User } from "services";
 import { IconLogout, IconUser } from "../icons";
-import { Dropdown } from "antd";
+import { Button, Dropdown } from "antd";
 import UserInfoDropdown from "./UserInfoDropdown";
 import { IconText } from "@core/components/common";
 import { errorHandling } from "utils";
+import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
 
 interface StyleProps {
   sideMenuOpened?: boolean;
@@ -21,6 +22,8 @@ interface Props extends StyleProps {
 
 function AppMenuBarTools({}: Props) {
   const [signOutSpinning, setSignOutSpinning] = React.useState(false);
+  const fullScreen = useAppStore((s) => s.fullScreen);
+  const setFullScreen = useAppStore((s) => s.setFullScreen);
   const me = useUserStore((s) => s.me);
   const signOut = useUserStore((s) => s.signOut);
   const { t } = useI18n();
@@ -40,6 +43,17 @@ function AppMenuBarTools({}: Props) {
   return (
     <Container>
       <ToolBar>
+        <Button
+          size={"small"}
+          type={fullScreen ? "primary" : "text"}
+          icon={fullScreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+          onClick={() => {
+            setFullScreen(!fullScreen);
+          }}
+        >
+          {fullScreen ? "Exit FullScreen" : "FullScreen"}
+        </Button>
+
         <Dropdown dropdownRender={() => <UserInfoDropdown onSignOut={handleClickSignOut} />}>
           <div role={"user-info"}>
             <IconText icon={<IconUser fontSize={18} />} block>
@@ -67,7 +81,7 @@ const ToolBar = styled.div`
   height: 100%;
   border-radius: 4px;
   padding-left: 5px;
-  ${SMixinFlexRow("stretch", "stretch")};
+  ${SMixinFlexRow("stretch", "center")};
   overflow: hidden;
   font-size: 12px;
 
@@ -78,7 +92,7 @@ const ToolBar = styled.div`
     position: relative;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-right: 10px;
+    padding: 0 8px;
   }
   [role="logout"] {
     flex: none;
