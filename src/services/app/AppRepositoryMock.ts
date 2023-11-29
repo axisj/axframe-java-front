@@ -6,7 +6,7 @@ import {
   GetProgramAuthorityResponse,
 } from "./AppRepositoryInterface";
 import { delay } from "@core/utils/thread/timing";
-import { getAppMenuMockData } from "@core/router/serviceMockUpData";
+import { getAppMenuMockData } from "services/serviceMockUpData";
 
 export class AppRepositoryMock extends AppRepositoryInterface {
   async getAppMenu(params: GetAppMenuRequest): Promise<GetAppMenuResponse> {

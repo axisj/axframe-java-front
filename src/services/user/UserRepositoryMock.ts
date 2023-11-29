@@ -12,7 +12,7 @@ import { setApiHeader } from "../apiWrapper";
 import { setAppData } from "@core/utils/store";
 import pkg from "../../../package.json";
 import { v4 as uuidv4 } from "uuid";
-import { signInMockData } from "@core/router/serviceMockUpData";
+import { signInMockData } from "services/serviceMockUpData";
 
 export class UserRepositoryMock implements UserRepositoryInterface {
   async signIn(_params: SignInRequest): Promise<SignInResponse> {

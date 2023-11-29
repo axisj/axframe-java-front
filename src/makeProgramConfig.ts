@@ -6,7 +6,7 @@ const programConfig: ProgramConfig = {
   programTypeFile: "./src/router/@programTypes.ts",
   pageRouteFile: "./src/router/PageRoute.tsx",
   routesFile: "./src/router/Routes.tsx",
-  serviceMockUpDataFile: "./src/@core/router/serviceMockUpData.ts",
+  serviceMockUpDataFile: "./src/services/serviceMockUpData.ts",
   programs: [
     {
       code: "DEMO_USER_LIST",
