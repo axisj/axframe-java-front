@@ -102,7 +102,7 @@ export const apiWrapper = async <P>(
             await useUserStore.getState().signOut();
           }
           config.tryTime = tryTime + 1;
-          throw new ApiError(_data.error.code, _data.error.message);
+          throw new ApiError(_data.error.code, _data.error.message, _data.error.data);
         }
 
         if (_data && _data.rs.Authorization && _data.rs.Token) {
@@ -117,7 +117,7 @@ export const apiWrapper = async <P>(
         return await apiWrapper(method, route, body, config);
       }
     }
-    throw new ApiError(data.error.code, data.error.message);
+    throw new ApiError(data.error.code, data.error.message, data.error.data);
   }
 
   return { data: data as P, ...rest };

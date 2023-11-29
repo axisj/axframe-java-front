@@ -1,4 +1,4 @@
-export * from "./@programTypes.ts";
+export * from "./@programTypes";
 export * from "./@types";
 export * from "./Routes";
 export * from "./useAppMenu";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useUserStore } from "stores";
+import { useAppStore, useUserStore } from "stores";
 import { getFlattedMenus } from "@core/utils/store";
 import { ROUTES } from "./Routes";
 import { useAppMenu } from "./useAppMenu";
@@ -13,9 +13,24 @@ function RequireAuth({ children }: Props) {
   const loaded = useUserStore((s) => s.loaded);
   const me = useUserStore((s) => s.me);
   const accessibleMenus = useUserStore((s) => s.authorityList);
+  const callAppMenu = useAppStore((s) => s.callAppMenu);
   const { APP_MENUS } = useAppMenu();
   const location = useLocation();
   const currentMenu = getFlattedMenus(APP_MENUS as any).find((fMenu) => fMenu.key === location.pathname);
+
+  // use codeStore
+  // React.useEffect(() => {
+  //   if (!codeStoreLoaded && loaded && me) {
+  //     callAllCode().then();
+  //     callAppMenu().then();
+  //   }
+  // }, [callAllCode, callAppMenu, codeStoreLoaded, loaded, me]);
+
+  React.useEffect(() => {
+    if (loaded && me) {
+      callAppMenu().then();
+    }
+  }, [callAppMenu, loaded, me]);
 
   if (!loaded) {
     return null;
