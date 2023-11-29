@@ -26,7 +26,7 @@ export interface AppMenuGroup {
   progCd?: string;
   userGroup: string[];
   iconTy?: keyof typeof MenuIconType;
-  children: AppMenu[];
+  children?: AppMenu[];
 }
 
 export interface GetAppMenuRequest {}

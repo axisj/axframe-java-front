@@ -10,8 +10,8 @@ export function useAppMenu() {
   const programList = useUserStore((s) => s.programList);
 
   const APP_MENUS = React.useMemo(() => {
-    const getAppMenus = (menus: AppMenu[]): AppMenu[] => {
-      return menus
+    const getAppMenus = (menus?: AppMenu[]): AppMenu[] => {
+      return (menus ?? [])
         .map((m) => {
           if (m.progCd && !programList.includes(m.progCd as PROGRAM_TYPES)) {
             return;
@@ -23,13 +23,13 @@ export function useAppMenu() {
         })
         .filter(Boolean) as AppMenu[];
     };
-    const getAppMenuGroups = (menuGroups) => {
+    const getAppMenuGroups = (menuGroups: AppMenuGroup[]) => {
       return menuGroups
         .filter((mg) => mg.userGroup.some((ug) => authorityList.includes(ug)))
         .map((mg) => {
           if (mg.menuGrpCd === "_") {
             return [
-              ...(mg.children
+              ...((mg.children ?? [])
                 .map((m) => {
                   if (m.progCd && !programList.includes(m.progCd as PROGRAM_TYPES)) {
                     return;
