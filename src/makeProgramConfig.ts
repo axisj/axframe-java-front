@@ -5,6 +5,8 @@ const programConfig: ProgramConfig = {
   templateDir: "./src/@core/pages",
   programTypeFile: "./src/router/@programTypes.ts",
   pageRouteFile: "./src/router/PageRoute.tsx",
+  routesFile: "./src/router/Routes.tsx",
+  serviceMockUpDataFile: "./src/@core/router/serviceMockUpData.ts",
   programs: [
     {
       code: "DEMO_USER_LIST",

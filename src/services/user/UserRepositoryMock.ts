@@ -9,9 +9,10 @@ import {
   UserRepositoryInterface,
 } from "./UserRepositoryInterface";
 import { setApiHeader } from "../apiWrapper";
-import { setAppData } from "../../@core/utils/store";
+import { setAppData } from "@core/utils/store";
 import pkg from "../../../package.json";
 import { v4 as uuidv4 } from "uuid";
+import { signInMockData } from "@core/router/serviceMockUpData";
 
 export class UserRepositoryMock implements UserRepositoryInterface {
   async signIn(_params: SignInRequest): Promise<SignInResponse> {
@@ -33,28 +34,7 @@ export class UserRepositoryMock implements UserRepositoryInterface {
     });
 
     return {
-      rs: {
-        userNm: "시스템사용자",
-        userCd: "system",
-        timeZone: 9,
-        locale: "en",
-        authorityList: ["ROLE_ADMIN", "ROLE_ASP", "ROLE_USER"],
-        programList: [
-          "EXAMPLE_DETAIL",
-          "EXAMPLE_FORM",
-          "EXAMPLE_LIST",
-          "EXAMPLE_LIST_AND_DRAWER",
-          "EXAMPLE_LIST_AND_MODAL",
-          "EXAMPLE_LIST_WITH_FORM",
-          "EXAMPLE_LIST_WITH_FORM_ROW",
-          "EXAMPLE_LIST_WITH_FORM_LIST",
-          "EXAMPLE_LIST_WITH_LIST",
-          "EXAMPLE_THREE_LIST",
-          "EXAMPLE_STATS",
-        ],
-        email: "tom@axisj.com",
-        compCd: "V100",
-      },
+      rs: signInMockData,
     };
   }
 

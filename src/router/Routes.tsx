@@ -23,6 +23,7 @@ const routes = {
     path: "",
     hideTab: true,
   },
+  /* ##INSERT_ROUTE_POSITION## */
 };
 
 routes["EXAMPLES"] = {
