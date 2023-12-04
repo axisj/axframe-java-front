@@ -10,7 +10,7 @@ import { getAppMenuMockData } from "services/serviceMockUpData";
 
 export class AppRepositoryMock extends AppRepositoryInterface {
   async getAppMenu(params: GetAppMenuRequest): Promise<GetAppMenuResponse> {
-    await delay(500);
+    await delay(100);
 
     return {
       ds: getAppMenuMockData,

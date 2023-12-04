@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   React.useEffect(() => {
     if (appStoreLoaded && pageStoreLoaded && userStoreLoaded) {
-      setTimeout(() => setStoreLoaded(true), 200);
+      setStoreLoaded(true);
     }
   }, [appStoreLoaded, pageStoreLoaded, userStoreLoaded]);
 

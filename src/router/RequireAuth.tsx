@@ -14,6 +14,7 @@ function RequireAuth({ children }: Props) {
   const me = useUserStore((s) => s.me);
   const accessibleMenus = useUserStore((s) => s.authorityList);
   const callAppMenu = useAppStore((s) => s.callAppMenu);
+  const appMenuGroupLoaded = useAppStore((s) => s.appMenuGroupLoaded);
   const { APP_MENUS } = useAppMenu();
   const location = useLocation();
   const currentMenu = getFlattedMenus(APP_MENUS as any).find((fMenu) => fMenu.key === location.pathname);
@@ -27,10 +28,11 @@ function RequireAuth({ children }: Props) {
   // }, [callAllCode, callAppMenu, codeStoreLoaded, loaded, me]);
 
   React.useEffect(() => {
-    if (loaded && me) {
+    if (loaded && me && !appMenuGroupLoaded) {
+      console.log("callAppMenu call");
       callAppMenu().then();
     }
-  }, [callAppMenu, loaded, me]);
+  }, [callAppMenu, loaded, me, appMenuGroupLoaded]);
 
   if (!loaded) {
     return null;

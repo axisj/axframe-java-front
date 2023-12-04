@@ -13,6 +13,7 @@ export interface AppModel {
   height: number;
   appMenuGroups: AppMenuGroup[];
   appMenuGroupSpinning: boolean;
+  appMenuGroupLoaded: boolean;
   fullScreen: boolean;
 }
 
@@ -37,6 +38,7 @@ export const appInitialState: AppModel = {
   height: 0,
   appMenuGroups: [],
   appMenuGroupSpinning: false,
+  appMenuGroupLoaded: false,
   fullScreen: false,
 };
 
@@ -50,7 +52,7 @@ const getAppStoreActions: StoreActions<AppModel & AppActions, AppActions> = (set
     set({ appMenuGroupSpinning: true });
     try {
       const data = await AppService.getAppMenu({});
-      set({ appMenuGroups: data.ds });
+      set({ appMenuGroups: data.ds, appMenuGroupLoaded: true });
     } finally {
       set({ appMenuGroupSpinning: false });
     }
@@ -64,6 +66,8 @@ export const useAppStore = buildStore<AppStore>("app", 1, (set, get) => ({
 }));
 
 useAppStore.persist.onFinishHydration((state) => {
+  console.log("useAppStore.onFinishHydration");
+  state.appMenuGroupLoaded = false;
   if (!state.loaded) {
     state.setLoaded(true);
   }
