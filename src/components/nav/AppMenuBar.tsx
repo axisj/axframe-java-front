@@ -46,7 +46,7 @@ function AppMenuBar({}: Props) {
 
     const getAppMenuGroups = (menuGroups: AppMenuGroup[]) => {
       return menuGroups.map((mg, idx) => {
-        const children = getAppMenus(mg.children, `${idx}`);
+        const children = getAppMenus(mg.children ?? [], `${idx}`);
         return {
           key: idx,
           program_type: mg.progCd,
