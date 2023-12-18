@@ -23,6 +23,10 @@ const routes = {
     path: "",
     hideTab: true,
   },
+  MAKE_PROGRAM: {
+    program_type: PROGRAM_TYPES.MAKE_PROGRAM,
+    path: "/make-program",
+  },
   /* ##INSERT_ROUTE_POSITION## */
 };
 

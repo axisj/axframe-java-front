@@ -8,6 +8,7 @@ import { AXFIconBrandAxisj } from "../AXFIcons";
 import type { MenuProps } from "antd";
 import { ConfigProvider, Menu } from "antd";
 import { useUserStore } from "stores";
+import { IconText } from "../../@core/components/common";
 
 interface StyleProps {
   sideMenuOpened?: boolean;
@@ -20,7 +21,7 @@ interface Props extends StyleProps {
 
 function AppMenuBar({}: Props) {
   const { currentLanguage } = useI18n();
-  const { linkByMenu } = useLink();
+  const { linkByMenu, linkByTo } = useLink();
   const { APP_MENUS } = useAppMenu();
   const selectedMenuUuid = useUserStore((s) => s.selectedMenuUuid);
 
@@ -73,7 +74,12 @@ function AppMenuBar({}: Props) {
 
   return (
     <Container>
-      <AXFIconBrandAxisj fontSize={16} />
+      <IconText
+        icon={<AXFIconBrandAxisj fontSize={16} />}
+        onClick={() => {
+          linkByTo("/");
+        }}
+      />
       <MenuContainer>
         <ConfigProvider
           theme={{

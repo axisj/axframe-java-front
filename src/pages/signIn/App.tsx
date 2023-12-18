@@ -39,26 +39,6 @@ function App({}: Props) {
   const ref1 = React.useRef(null);
   const ref2 = React.useRef(null);
 
-  const steps: TourProps["steps"] = React.useMemo(
-    () => [
-      {
-        title: "Hello Stranger! This is a demo page.",
-        description: "Please enter any value for your ID and password.",
-        target: () => ref1.current,
-      },
-      {
-        title: "Sign In",
-        description: "Click Sign In Button",
-        target: () => ref2.current,
-        onFinish: () => {
-          localStorage.setItem("isRegularUser", "true");
-          setOpen(false);
-        },
-      },
-    ],
-    [],
-  );
-
   const [form] = Form.useForm<SignInFormItem>();
 
   const handleChangeTheme = React.useCallback(() => {
@@ -208,7 +188,6 @@ function App({}: Props) {
           </SignInFormBox>
         </SignInBox>
       </SignInContainer>
-      <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
     </>
   );
 }

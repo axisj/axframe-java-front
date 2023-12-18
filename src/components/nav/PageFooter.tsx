@@ -11,9 +11,6 @@ import pkg from "../../../package.json";
 interface Props {}
 
 function PageFooter({}: Props) {
-  const sideMenuOpened = useAppStore((s) => s.sideMenuOpened);
-  const setSideMenuOpened = useAppStore((s) => s.setSideMenuOpened);
-  const setOpenedMenuUuids = useUserStore((s) => s.setOpenedMenuUuids);
   const theme = useAppStore((s) => s.theme);
   const setTheme = useAppStore((s) => s.setTheme);
 
@@ -21,27 +18,9 @@ function PageFooter({}: Props) {
     setTheme(theme === "light" ? "dark" : "light");
   }, [setTheme, theme]);
 
-  const handleSetSideMenuOpened = React.useCallback(
-    (opened: boolean) => {
-      setOpenedMenuUuids([]);
-      setSideMenuOpened(opened);
-    },
-    [setOpenedMenuUuids, setSideMenuOpened],
-  );
-
   return (
     <Container>
       <Tools>
-        <ToggleSideNavHandle>
-          <IconText
-            iconSize={20}
-            icon={sideMenuOpened ? <IconSideBarClosed /> : <IconSideBarOpen />}
-            onClick={() => {
-              handleSetSideMenuOpened(!sideMenuOpened);
-            }}
-          />
-        </ToggleSideNavHandle>
-
         <LangSelector />
 
         <IconText
@@ -71,14 +50,7 @@ const Tools = styled.div`
   ${SMixinFlexRow("flex-start", "center")};
   flex: 1;
   gap: 10px;
-`;
-
-const ToggleSideNavHandle = styled.div`
-  height: 33px;
-  border-right: 1px solid ${(p) => p.theme.border_color_base};
-  ${SMixinFlexRow("center", "center")};
-  padding: 0 8px;
-  margin-right: 10px;
+  padding-left: 8px;
 `;
 
 const FooterLinks = styled.div`

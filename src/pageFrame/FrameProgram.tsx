@@ -29,19 +29,7 @@ function FrameProgram({ sideMenuOpened }: Props) {
         <AppMenuBarTools />
       </PageFrameHeaderToolBar>
 
-      {!fullScreen && (
-        <PageFrameHeader>
-          <Logo />
-          {pageTabLoaded && <TabGroup />}
-        </PageFrameHeader>
-      )}
-
       <PageFrameContent>
-        {!fullScreen && (
-          <PageFrameNav sideMenuOpened={sideMenuOpened}>
-            <NavGroup />
-          </PageFrameNav>
-        )}
         <Content>
           <React.Suspense fallback={<></>}>
             <Outlet />

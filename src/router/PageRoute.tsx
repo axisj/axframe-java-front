@@ -27,6 +27,7 @@ const Home = React.lazy(() => import("pages/home/App"));
 const SignIn = React.lazy(() => import("pages/signIn/App"));
 const Error404 = React.lazy(() => import("pages/error/Error404"));
 
+const MakeProgram = React.lazy(() => import("pages/makeProgram/App"));
 /* ##IMPORT_COMPONENT_POSITION## */
 
 function PageRoute() {
@@ -70,6 +71,7 @@ function PageRoute() {
           <Route path={EXAMPLE_ROUTERS.THREE_LIST.path} element={<ExampleThreeList />} />
           <Route path={EXAMPLE_ROUTERS.STATS.path} element={<ExampleStats />} />
 
+          <Route path={ROUTES.MAKE_PROGRAM.path} element={<MakeProgram />} />
           {/* ##INSERT_ROUTE_POSITION## */}
 
           <Route path={ROUTES.HOME.path} element={<Home />} />

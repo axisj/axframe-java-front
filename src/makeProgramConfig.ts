@@ -9,16 +9,10 @@ const programConfig: ProgramConfig = {
   serviceMockUpDataFile: "./src/services/serviceMockUpData.ts",
   programs: [
     {
-      code: "DEMO_USER_LIST",
-      name: ["DEMO", "userList"],
-      type: "LIST",
-      url: "/demo/user/list",
-    },
-    {
-      code: "DEMO_USER_LIST_FORM",
-      name: ["DEMO", "userListForm"],
-      type: "LIST_WITH_FORM",
-      url: "/demo/user/list-form",
+      code: "MAKE_PROGRAM",
+      name: ["makeProgram"],
+      type: "FORM",
+      url: "/make-program",
     },
   ],
 };

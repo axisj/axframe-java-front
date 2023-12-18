@@ -52,7 +52,6 @@ export const useUserStore = buildStore<UserStore>(
     setLoaded: (loaded: boolean) => set({ loaded }),
     setMe: async (me) => {
       await usePageTabStore.getState().clearTab();
-
       set({ me, authorityList: me.authorityList, programList: me.programList as PROGRAM_TYPES[] });
     },
     clearMe: () => {

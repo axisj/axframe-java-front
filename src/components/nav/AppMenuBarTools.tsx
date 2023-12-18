@@ -43,16 +43,6 @@ function AppMenuBarTools({}: Props) {
   return (
     <Container>
       <ToolBar>
-        <Button
-          size={"small"}
-          type={fullScreen ? "primary" : "text"}
-          icon={fullScreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
-          onClick={() => {
-            setFullScreen(!fullScreen);
-          }}
-        >
-          {fullScreen ? "Exit FullScreen" : "FullScreen"}
-        </Button>
 
         <Dropdown dropdownRender={() => <UserInfoDropdown onSignOut={handleClickSignOut} />}>
           <div role={"user-info"}>
